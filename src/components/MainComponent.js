@@ -21,6 +21,12 @@ const mapStateToProps = state => {
   }
 }
 
+const DishWithId = ({ match }) => {
+  return (
+    <mapStateToProps comments={this.props.comments}
+      dishes={this.props.dishes} selectedDish={match.params.dishId} />
+  );
+};
 
 class Main extends Component {
 
@@ -60,6 +66,7 @@ class Main extends Component {
           <Switch>
             <Route path='/home' component={HomePage} />
             <Route exact path='/menu' component={() => <Menu dishes={this.props.dishes} />} />
+            <Route path='/menu/:dishId' component={DishWithId} />
             <Route exact path='/contactus' component={Contact} />
             <Redirect to="/home" />
           </Switch>
@@ -69,7 +76,7 @@ class Main extends Component {
     );
   }
 }
-     
- 
+
+
 
 export default withRouter(connect(mapStateToProps)(Main));
